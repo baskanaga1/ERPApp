@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/timesheet_editable"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/editview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="visible">
+                <LinearLayout
+                    android:id="@+id/activityType_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/activitydetailtext"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:id="@+id/flrspin"
+                        style="@style/LeadSpinnerText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/flrlbl"
+                        android:layout_weight="4"
+                        android:onClick="floorClick"
+                        android:visibility="gone" />
+                    <Spinner
+                        android:id="@+id/activityType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/scm_dropdown_red_bg" />
+                    <TextView
+                        android:id="@+id/type_id"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/type_value"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                    <ImageView
+                        android:id="@+id/addButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_timesheet_add"
+                        android:visibility="visible" />
+                    <ImageView
+                        android:id="@+id/deleteButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_timesheet_delete"
+                        android:visibility="visible" />
+                </LinearLayout>
+                <!--      <LinearLayout
+                          android:id="@+id/activityType_layout"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+                          <include
+                              android:id="@+id/activity_type"
+                              layout="@layout/timesheet_activity_type"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content" />
+                      </LinearLayout>-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/activitydetaillayout"
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/activitydetails"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/activityType"
+                        android:background="@drawable/scm_dropdown_red_bg"
+                        android:prompt="@string/promm"
+                        android:visibility="visible" />
+                    <EditText
+                        android:id="@+id/activity_detail_edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Others"
+                        android:padding="10dp"
+                        android:filterTouchesWhenObscured="false"
+                        android:selectAllOnFocus="true"
+                        android:background="@drawable/scm_edit_text_red_bg"
+                        android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/type_details_id"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/type_details_value"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/subactivitydetaillayout"
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:layout_marginBottom="12dp"
+                        android:id="@+id/subactivitydetails"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/activityType"
+                        android:background="@drawable/scm_dropdown_red_bg"
+                        android:prompt="@string/promm"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/subtype_details_id"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/subtype_details_value"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+                    <EditText
+                        android:id="@+id/editable_startTime"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="2"
+                        android:editable="false"
+                        android:hint="Start Time"
+                        android:textColor="#818181"
+                        android:background="@drawable/scm_edit_text_red_bg"
+                        android:padding="10dp" />
+                    <EditText
+                        android:id="@+id/editable_endTime"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:editable="false"
+                        android:hint="End Time"
+                        android:textColor="#818181"
+                        android:background="@drawable/scm_edit_text_red_bg"
+                        android:padding="10dp" />
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/timesheet_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textColor="#818181"
+                    android:background="@drawable/lead_edit_text_bg"
+                    android:hint="Description" />
+            </LinearLayout>
+            <!--    <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    >
+                    <ListView
+                        android:id="@+id/list_view"
+                        style="@style/ListViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"></ListView>
+                </LinearLayout>-->
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/timesheet_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/border"
+                android:visibility="visible">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="6">
+                    <LinearLayout
+                        android:id="@+id/sno_bg_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/gray"
+                        android:layout_weight="1.2"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <com.guruinfo.scm.common.ui.TextViewPlus
+                            android:id="@+id/list_sno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <com.guruinfo.scm.common.ui.TextViewPlus
+                            android:id="@+id/view_activityType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GENERAL"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                        <com.guruinfo.scm.common.ui.TextViewPlus
+                            android:id="@+id/view_status_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pending"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4.8">
+                        <LinearLayout
+                            android:id="@+id/ParentLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:padding="5dp"
+                            android:orientation="vertical"
+                            android:weightSum="10">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:orientation="horizontal">
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_activitydetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:textColor="#000"
+                                    android:textStyle="bold"
+                                    android:text="Activity Details" />
+                                <RelativeLayout
+                                    android:id="@+id/chat_icon_layout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:visibility="gone"
+                                    >
+                                    <ImageView
+                                        android:id="@+id/chat_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_chat_color_icon"
+                                        android:visibility="visible" />
+                                    <TextView
+                                        android:id="@+id/emp_chat_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="25dp"
+                                        android:layout_marginLeft="22dp"
+                                        android:layout_marginTop="1dp"
+                                        android:background="@drawable/ic_chat_count_color"
+                                        android:gravity="center"
+                                        android:text="0"
+                                        android:padding="1dp"
+                                        android:textSize="12sp"
+                                        android:textColor="@color/white"
+                                        android:visibility="visible"
+                                        />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/view_subactivity_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:orientation="horizontal">
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_subactivitydetails"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:textColor="#000"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:orientation="horizontal">
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_Description"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:textColor="#000"
+                                    android:text="Description" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:orientation="horizontal">
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_starttime"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#000"
+                                    android:text="start time" />
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_endtime"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#000"
+                                    android:text="end time" />
+                                <com.guruinfo.scm.common.ui.TextViewPlus
+                                    android:id="@+id/view_diftime"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:textColor="#000"
+                                    android:textStyle="bold"
+                                    android:text="dif time" />
+                            </LinearLayout>
+                            <!-- <LinearLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:padding="3dp"
+                                 android:layout_weight="3">
+                                 <com.amarprakash.scm.common.ui.TextViewPlus
+                                     android:layout_width="0dp"
+                                     android:layout_height="wrap_content"
+                                     android:layout_weight="0.5"
+                                     android:text="Description" />
+                                 <com.amarprakash.scm.common.ui.TextViewPlus
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:text=":" />
+                                 <com.amarprakash.scm.common.ui.TextViewPlus
+                                     android:id="@+id/view_Description"
+                                     android:layout_width="0dp"
+                                     android:layout_weight="0.5dp"
+                                     android:layout_height="wrap_content"
+                                     android:text="assds" />
+                                 <com.amarprakash.scm.common.ui.TextViewPlus
+                                     android:id="@+id/view_status_time"
+                                     android:padding="5dp"
+                                     android:layout_width="0dp"
+                                     android:layout_weight="0.5"
+                                     android:layout_height="wrap_content"
+                                     android:text="Status" />
+                         </LinearLayout>-->
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
